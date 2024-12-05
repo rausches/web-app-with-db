@@ -1,0 +1,64 @@
+@model HW2.Models.ActorDTO
+
+@{
+    ViewData["Title"] = "Create or Update Actor";
+}
+<link rel="stylesheet" href="~/css/styles.css" />
+<h2>Create or Update Actor</h2>
+
+<form id="actorForm">
+    <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" class="form-control" value="@Model?.FullName" required>
+    </div>
+    <div class="form-group">
+        <label for="justWatchPersonId">JustWatch Person ID</label>
+        <input type="number" id="justWatchPersonId" class="form-control" value="@Model?.JustWatchPersonId" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div id="resultMessage" class="mt-3"></div>
+
+@section Scripts {
+    <script>
+        document.getElementById('actorForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const fullName = document.getElementById('fullName').value;
+            const justWatchPersonId = document.getElementById('justWatchPersonId').value;
+
+            const actorDto = {
+                FullName: fullName,
+                JustWatchPersonId: parseInt(justWatchPersonId)
+            };
+
+            try {
+                const response = await fetch('/admin/person/async', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(actorDto)
+                });
+
+                const resultMessage = document.getElementById('resultMessage');
+                resultMessage.classList.remove('alert-success', 'alert-danger');
+
+                if (response.ok) {
+                    const message = await response.text();
+                    resultMessage.textContent = message;
+                    resultMessage.classList.add('alert', 'alert-success');
+                } else {
+                    const error = await response.text();
+                    resultMessage.textContent = error;
+                    resultMessage.classList.add('alert', 'alert-danger');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                const resultMessage = document.getElementById('resultMessage');
+                resultMessage.textContent = 'An unexpected error occurred.';
+                resultMessage.classList.add('alert', 'alert-danger');
+            }
+        });
+    </script>
+}

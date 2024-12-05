@@ -1,0 +1,64 @@
+@model HW2.Models.InfoViewModel
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="~/css/styles.css">
+</head>
+<div class="container mt-5">
+    <h2 class="mb-4">Streaming Database Information</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Total Shows</div>
+                <div class="card-body">
+                    <p class="card-text">Total: @Model.TotalShows</p>
+                    <p class="card-text">Movies: @Model.TotalMovies</p>
+                    <p class="card-text">TV Shows: @Model.TotalTVShows</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Highest TMDB Popularity</div>
+                <div class="card-body">
+                    <p class="card-text">@Model.HighestTMDBPopularityShow?.Title</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header">Most IMDB Votes</div>
+                <div class="card-body">
+                    <p class="card-text">@Model.MostIMDBVotesShow?.Title</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <h4>Available Genres</h4>
+        <ul class="list-group">
+            @foreach (var genre in Model.AvailableGenres)
+            {
+                <li class="list-group-item">@genre</li>
+            }
+        </ul>
+    </div>
+
+    <div>
+        <h4>Top Director and Their Shows</h4>
+        @if (Model.TopDirectorShows != null && Model.TopDirectorShows.Any())
+        {
+            var directorName = Model.TopDirectorShows.FirstOrDefault()?.DirectorName;
+            <p>Director: <strong>@directorName</strong></p>
+            <ul class="list-group">
+                @foreach (var show in Model.TopDirectorShows)
+                {
+                    <li class="list-group-item">@show.Title (@show.ReleaseYear)</li>
+                }
+            </ul>
+        }
+    </div>
+</div>

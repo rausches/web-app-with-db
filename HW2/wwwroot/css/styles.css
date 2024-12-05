@@ -1,0 +1,87 @@
+body {
+  background-color: #e0f7fa; /* Light blue background */
+}
+
+.jumbotron {
+  background-color: #1e1e1e; /* Dark gray background */
+  color: #e0e0e0; /* Light gray text */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
+}
+
+.jumbotron h1 {
+  color: #2196f3; /* Blue text */
+}
+
+.jumbotron p {
+  color: #b0bec5; /* Lighter gray text */
+}
+
+.btn-primary {
+  background-color: #0d47a1; /* Dark blue background */
+  border-color: #0d47a1; /* Dark blue border */
+}
+
+.btn-primary:hover {
+  background-color: #002171; /* Even darker blue background on hover */
+  border-color: #002171; /* Even darker blue border on hover */
+}
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.list-group-item {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.actor-name {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+.actor-name:hover {
+  color: #0056b3;
+}
+
+.show-list {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-text {
+  margin: 0;
+}
+
+.form-group.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.btn.ml-2 {
+  margin-left: 10px;
+}
+
+.form-group.d-flex.justify-content-center {
+  justify-content: center;
+}
+
+.scrollable {
+  max-height: 400px;
+  overflow-y: auto;
+}
